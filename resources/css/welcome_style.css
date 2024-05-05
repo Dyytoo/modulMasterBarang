@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+
+#bg-box{
+    background-color: #A68E74;
+}
+
+#judul-welcome{
+    font-family: Manrope;
+}
+
+#btn-masuk{
+    background-color: #424530;
+    color: #FFEFCD;
+    font-family: Manrope;
+    transition: 0.2s;
+}
+
+#btn-masuk:hover{
+    background-color: #E09132;
+    color: #424530;
+}
