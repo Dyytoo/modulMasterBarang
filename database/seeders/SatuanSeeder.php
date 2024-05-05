@@ -16,18 +16,18 @@ class SatuanSeeder extends Seeder
         DB::table('satuans')->insert([
             [
                 'code' => 'A',
-                'name' => 'Buah',
-                'description' => 'Sejenis Buah Buahan'
+                'nama' => 'Buah',
+                'deskripsi' => 'Buah Buahan'
             ],
             [
                 'code' => 'B',
-                'name' => 'Sayuran',
-                'description' => 'Sejenis Sayur Sayuran'
+                'nama' => 'Sayur',
+                'deskripsi' => 'Sayur Sayuran'
             ],
             [
                 'code' => 'C',
-                'name' => 'Biji',
-                'description' => 'Sejenis Biji Bijian'
+                'nama' => 'Biji',
+                'deskripsi' => 'Biji Bijian'
             ],
         ]);
     }

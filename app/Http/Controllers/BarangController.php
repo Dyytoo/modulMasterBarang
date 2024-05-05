@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Validator;
 use Illuminate\Support\Facades\DB;
+use App\Models\Barang;
+use App\Models\Satuan;
 
 class BarangController extends Controller
 {
@@ -14,11 +16,12 @@ class BarangController extends Controller
     public function index()
     {
         $pageTitle = 'Daftar Barang';
-
-        // RAW SQL QUERY
-        $barangs = DB::select('select *, barangs.id as barang_id, satuans.name as satuan_name from barangs left join satuans on barangs.satuan_id = satuans.id');
-        return view('barang.index', ['pageTitle' => $pageTitle, 'barangs' => $barangs
-    ]);
+        // ELOQUENT
+        $barangs = Barang::all();
+        return view('barang.index', [
+            'pageTitle' => $pageTitle,
+            'barangs' => $barangs
+        ]);
     }
 
     /**
@@ -27,7 +30,10 @@ class BarangController extends Controller
     public function create()
     {
         $pageTitle = 'Tambah Barang';
-        return view('barang.create', compact('pageTitle'));
+        // ELOQUENT
+        $satuans = Satuan::all();
+        return view('barang.create', compact('pageTitle', 'satuans'));
+
     }
 
     /**
@@ -37,20 +43,28 @@ class BarangController extends Controller
     {
         $messages = [
             'required' => ':Attribute harus diisi.',
-            'kode' => 'Isi :attribute dengan format yang benar',
+            'code' => 'Isi :attribute dengan format yang benar',
             'numeric' => 'Isi :attribute dengan angka'
         ];
-
         $validator = Validator::make($request->all(), [
+            'kodeBarang' => 'required|numeric',
             'namaBarang' => 'required',
-            'deskipsi' => 'required',
-            'kodeBarang' => 'required|email',
-            'hargaBarang' => 'required|numeric'
+            'deskripsi' => 'required',
+            'harga' => 'numeric',
         ], $messages);
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-        return $request->all();
+
+        // ELOQUENT
+        $barang = new Barang;
+        $barang->kodebarang = $request->kodeBarang;
+        $barang->namabarang = $request->namaBarang;
+        $barang->deskripsi = $request->deskripsi;
+        $barang->harga = $request->harga;
+        $barang->satuan_id = $request->satuan;
+        $barang->save();
+        return redirect()->route('barangs.index');
     }
 
     /**
@@ -58,7 +72,11 @@ class BarangController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $pageTitle = 'Informasi Barang';
+        // ELOQUENT
+        $barang = Barang::find($id);
+        return view('barang.show', compact('pageTitle', 'barang'));
+
     }
 
     /**
@@ -66,7 +84,18 @@ class BarangController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $pageTitle = 'Edit Barang';
+        // ELOQUENT
+        $satuans = Satuan::all();
+        $barang = Barang::find($id);
+        return view(
+            'barang.edit',
+            compact(
+                'pageTitle',
+                'satuans',
+                'barang'
+            )
+        );
     }
 
     /**
@@ -74,7 +103,29 @@ class BarangController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $messages = [
+            'required' => ':Attribute harus diisi.',
+            'code' => 'Isi :attribute dengan format yang benar',
+            'numeric' => 'Isi :attribute dengan angka'
+        ];
+        $validator = Validator::make($request->all(), [
+            'kodeBarang' => 'required',
+            'namaBarang' => 'required',
+            'deskripsi' => 'required',
+            'harga' => 'numeric',
+        ], $messages);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+        // ELOQUENT
+        $barang = Barang::find($id);
+        $barang->kodebarang = $request->kodeBarang;
+        $barang->namabarang = $request->namaBarang;
+        $barang->deskripsi = $request->deskripsi;
+        $barang->harga = $request->harga;
+        $barang->satuan_id = $request->satuan;
+        $barang->save();
+        return redirect()->route('barangs.index');
     }
 
     /**
@@ -82,6 +133,8 @@ class BarangController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // ELOQUENT
+        Barang::find($id)->delete();
+        return redirect()->route('barangs.index');
     }
 }

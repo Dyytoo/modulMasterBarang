@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class ProfileController extends Controller
+class ProfilController extends Controller
 {
     /**
      * Handle the incoming request.
@@ -12,6 +12,7 @@ class ProfileController extends Controller
     public function __invoke(Request $request)
     {
         $pageTitle = 'Profil';
-        return view('profile', ['pageTitle' => $pageTitle]);
+        return view('profil', ['pageTitle' => $pageTitle]);
+
     }
 }
