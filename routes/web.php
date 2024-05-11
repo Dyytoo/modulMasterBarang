@@ -9,8 +9,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('home', [HomeController::class, 'index'])->name('home');
+Route::get('home', [HomeController::class, 'index'])->name('home'); 
 
-Route::get('profil', ProfilController::class)->name('profil');
+Route::get('profile', ProfilController::class)->name('profil');
 
 Route::resource('barangs', BarangController::class);

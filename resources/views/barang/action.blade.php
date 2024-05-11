@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-
+scale=1.0">
     <title>{{ $pageTitle }}</title>
     @vite('resources/sass/app.scss')
 </head>
@@ -14,7 +15,7 @@
         <div class="container">
             <a href="{{ route('home') }}" class="navbar-brand mb-0 h1"><i class="bi-hexagon-fill me-2"></i> Modul Master
                 Barang</a>
-            <button type="button" class="navbar-toggler" data-bstoggle="collapse"
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -26,7 +27,7 @@
                             class="nav-link active">Daftar Barang</a></li>
                 </ul>
                 <hr class="d-lg-none text-white-50">
-                <a href="{{ route('profil') }}" class="btn btn-outlinelight my-2 ms-md-auto"><i
+                <a href="{{ route('profil') }}" class="btn btn-outline-light my-2 ms-md-auto"><i
                         class="bi-person-circle me-1"></i> Profil</a>
             </div>
         </div>
@@ -51,6 +52,7 @@
                         <th>Nama Barang</th>
                         <th>Deskripsi</th>
                         <th>Harga</th>
+                        <th>Satuan</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -61,21 +63,21 @@
                             <td>{{ $barang->namabarang }}</td>
                             <td>{{ $barang->deskripsi }}</td>
                             <td>{{ $barang->harga }}</td>
-                            <td>{{ $barang->satuan_nama }}</td>
+                            <td>{{ $barang->satuan->nama }}</td>
                             <td>
                                 {{-- ACTIONS SECTION --}}
                                 <div class="d-flex">
                                     <a href="{{ route('barangs.show', ['barang' => $barang->id]) }}"
-                                        class="btn btn-outline-dark btn-sm me-2"><i class="bi-personlines-fill"></i></a>
+                                        class="btn btn-outline-dark btn-sm me-2"><i class="bi-person-lines-fill"></i></a>
                                     <a href="{{ route('barangs.edit', ['barang' => $barang->id]) }}"
-                                        class="btn btn-outline-dark btn-sm me-2"><i class="bi-pencilsquare"></i></a>
+                                        class="btn btn-outline-dark btn-sm me-2"><i class="bi-pencil-square"></i></a>
                                     <div>
                                         <form
                                             action="{{ route('barangs.destroy', ['barang' => $barang->id]) }}"
                                             method="POST">
                                             @csrf
                                             @method('delete')
-                                            <button type="submit" class="btn btn-outline-dark btn-sm me2"><i
+                                            <button type="submit" class="btn btn-outline-dark btn-sm me-2"><i
                                                     class="bi-trash"></i></button>
                                         </form>
                                     </div>

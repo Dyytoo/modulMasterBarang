@@ -4,7 +4,7 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-primary">
     <div class="container">
         <a href="{{ route('home') }}" class="navbar-brand mb-0 h1"><i class="bi-hexagon-fill me-2"></i> Modul Master Barang</a>
-        <button type="button" class="navbar-toggler" data-bstoggle="collapse" data-bs-target="#navbarSupportedContent">
+        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -13,11 +13,10 @@
                 <li class="nav-item col-2 col-md-auto"><a href="{{ route('home') }}"
                         class="nav-link @if ($currentRouteName == 'home') active @endif">Home</a></li>
                 <li class="nav-item col-2 col-md-auto"><a href="{{ route('barangs.index') }}"
-                        class="nav-link
-@if ($currentRouteName == 'barangs.index') active @endif">Daftar Barang</a></li>
+                        class="nav-link @if ($currentRouteName == 'barangs.index') active @endif">Barang</a></li>
             </ul>
             <hr class="d-md-none text-white-50">
-            <a href="{{ route('profil') }}" class="btn btn-outline-lightmy-2 ms-md-auto"><i
+            <a href="{{ route('profil') }}" class="btn btn-outline-light my-2 ms-md-auto"><i
                     class="bi-person-circle me-1"></i> Profil</a>
         </div>
     </div>

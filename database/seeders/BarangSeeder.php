@@ -15,24 +15,24 @@ class BarangSeeder extends Seeder
     {
         DB::table('barangs')->insert([
             [
-                'kodebarang' => '225',
+                'kodebarang' => '224',
                 'namabarang' => 'Jeruk',
-                'deskripsi' => 'Buah yang berbentuk bulat',
-                'harga' => 3000,
+                'deskripsi' => 'Buah yang berwarna orange',
+                'harga' => 2000,
                 'satuan_id' => 1
             ],
             [
-                'kodebarang' => '432',
+                'kodebarang' => '544',
                 'namabarang' => 'Tomat',
                 'deskripsi' => 'Kadang buah, kadang sayuran',
-                'harga' => 4300,
+                'harga' => 4000,
                 'satuan_id' => 2
             ],
             [
-                'kodebarang' => '544',
+                'kodebarang' => '332',
                 'namabarang' => 'Kacang',
-                'deskripsi' => 'Biji yang bisa di goreng, bakar, dan kukus',
-                'harga' => 2500,
+                'deskripsi' => 'Jenis Biji Bijian',
+                'harga' => 3500,
                 'satuan_id' => 3
             ],
         ]);

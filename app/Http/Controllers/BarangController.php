@@ -33,7 +33,6 @@ class BarangController extends Controller
         // ELOQUENT
         $satuans = Satuan::all();
         return view('barang.create', compact('pageTitle', 'satuans'));
-
     }
 
     /**
@@ -43,15 +42,16 @@ class BarangController extends Controller
     {
         $messages = [
             'required' => ':Attribute harus diisi.',
-            'code' => 'Isi :attribute dengan format yang benar',
+            'email' => 'Isi :attribute dengan format yang benar',
             'numeric' => 'Isi :attribute dengan angka'
         ];
         $validator = Validator::make($request->all(), [
-            'kodeBarang' => 'required|numeric',
+            'kodeNama' => 'numeric',
             'namaBarang' => 'required',
             'deskripsi' => 'required',
             'harga' => 'numeric',
         ], $messages);
+
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
@@ -76,7 +76,6 @@ class BarangController extends Controller
         // ELOQUENT
         $barang = Barang::find($id);
         return view('barang.show', compact('pageTitle', 'barang'));
-
     }
 
     /**
@@ -105,18 +104,20 @@ class BarangController extends Controller
     {
         $messages = [
             'required' => ':Attribute harus diisi.',
-            'code' => 'Isi :attribute dengan format yang benar',
+            'email' => 'Isi :attribute dengan format yang benar',
             'numeric' => 'Isi :attribute dengan angka'
         ];
         $validator = Validator::make($request->all(), [
-            'kodeBarang' => 'required',
+            'kodeBarang' => 'numeric',
             'namaBarang' => 'required',
             'deskripsi' => 'required',
             'harga' => 'numeric',
         ], $messages);
+
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
+
         // ELOQUENT
         $barang = Barang::find($id);
         $barang->kodebarang = $request->kodeBarang;

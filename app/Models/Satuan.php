@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Satuan extends Model
 {
     use HasFactory;
-
     public function barangs()
     {
         return $this->hasMany(Barang::class);

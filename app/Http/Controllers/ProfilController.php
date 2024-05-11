@@ -13,6 +13,5 @@ class ProfilController extends Controller
     {
         $pageTitle = 'Profil';
         return view('profil', ['pageTitle' => $pageTitle]);
-
     }
 }

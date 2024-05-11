@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-
+scale=1.0">
     <title>{{ $pageTitle }}</title>
     @vite('resources/sass/app.scss')
 </head>
@@ -33,6 +34,7 @@
                         <th>Nama Barang</th>
                         <th>Deskripsi</th>
                         <th>Harga</th>
+                        <th>Satuan</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -43,7 +45,7 @@
                             <td>{{ $barang->namabarang }}</td>
                             <td>{{ $barang->deskripsi }}</td>
                             <td>{{ $barang->harga }}</td>
-                            <td>{{ $barang->satuan_nama }}</td>
+                            <td>{{ $barang->satuan->nama }}</td>
                             <td>
                                 {{-- ACTIONS SECTION --}}
                                 <div class="d-flex">
@@ -58,7 +60,7 @@
                                             method="POST">
                                             @csrf
                                             @method('delete')
-                                            <button type="submit" class="btn btn-outlinedark btn-sm me-2"><i
+                                            <button type="submit" class="btn btn-outline-dark btn-sm me-2"><i
                                                     class="bi-trash"></i></button>
                                         </form>
                                     </div>
@@ -71,6 +73,7 @@
         </div>
     </div>
     @endsection
+    
     @vite('resources/js/app.js')
 </body>
 
